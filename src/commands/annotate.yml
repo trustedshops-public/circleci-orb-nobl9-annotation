@@ -1,0 +1,47 @@
+description: >
+  Create Nobl9 SLO annotation
+parameters:
+  client-id-var:
+    description: Name of the environment variable containing the Nobl9 Client ID for the API auth.
+    type: env_var_name
+    default: NOBL9_CLIENT_ID
+  client-secret-var:
+    description: Name of the environment variable containing the Nobl9 Client Secret for the API auth.
+    type: env_var_name
+    default: NOBL9_CLIENT_SECRET
+  organization-var:
+    description: Name of the environment variable containing the value for the organization header of the Nobl9 API.
+    type: env_var_name
+    default: NOBL9_ORGANIZATION
+  annotation-name:
+    description: |
+      Name of the annotation in Nobl9. Default value is "circleci-deployment-<build_number>".
+      Value must be quoted in double quotes.
+    type: string
+    default: "circleci-deployment-$CIRCLE_BUILD_NUM"
+  annotation-project:
+    description: Name of the project containing the SLO for which the annotation should be created.
+    type: string
+  annotation-slo:
+    description: Name of the SLO for which the annotation should be created.
+    type: string
+  annotation-description:
+    description: |
+      Description of the annotation in Nobl9.
+      Default value is "CirclecCI Deployment $CIRCLE_BUILD_NUM\n Git-SHA1: $CIRCLE_SHA1\n $CIRCLE_BUILD_URL".
+      Value must be quoted in double quotes.
+    type: string
+    default: "CirclecCI Deployment $CIRCLE_BUILD_NUM\n Git-SHA1: $CIRCLE_SHA1\n $CIRCLE_BUILD_URL"
+
+steps:
+  - run:
+      name: Add Nobl9 annotation
+      environment:
+        PARAM_NOBL9_CLIENT_ID: <<parameters.client-id-var>>
+        PARAM_NOBL9_CLIENT_SECRET: <<parameters.client-secret-var>>
+        PARAM_NOBL9_ORGANIZATION: <<parameters.organization-var>>
+        PARAM_NOBL9_ANNOTATION_NAME: <<parameters.annotation-name>>
+        PARAM_NOBL9_ANNOTATION_PROJECT: <<parameters.annotation-project>>
+        PARAM_NOBL9_ANNOTATION_SLO: <<parameters.annotation-slo>>
+        PARAM_NOBL9_ANNOTATION_DESCRIPTION: <<parameters.annotation-description>>
+      command: <<include(scripts/annotate.sh)>>

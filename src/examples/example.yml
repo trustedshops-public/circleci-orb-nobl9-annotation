@@ -1,0 +1,25 @@
+description: Easily add Nobl9 SLO annotations in your jobs.
+usage:
+  version: 2.1
+
+  orbs:
+    nobl9-annotation: trustedshops-public/nobl9-annotation@<version>
+
+  jobs:
+    nobl9-annotation-example:
+      docker:
+        - image: 'cimg/base:2022.01'
+      steps:
+        - checkout
+        - nobl9-annotation/annotate:
+            annotation-project: my-project
+            annotation-slo: my-slo
+
+  workflows:
+    aws-cli:
+      jobs:
+        - nobl9-annotation-example:
+            name: nobl9-annotation
+            filters:
+              branches:
+                only: [ main ]
