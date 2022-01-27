@@ -1,6 +1,6 @@
 #!/bin/bash
 
-BASIC_TOKEN="$( echo $PARAM_NOBL9_CLIENT_ID:$PARAM_NOBL9_CLIENT_SECRET | base64 -w0)"
+BASIC_TOKEN="$( echo "$PARAM_NOBL9_CLIENT_ID":"$PARAM_NOBL9_CLIENT_SECRET" | base64 -w0)"
 
 NOBL9_ACCESS_TOKEN="$(curl --location --request POST 'https://app.nobl9.com/api/accessToken' \
 --header 'Organization: '"$PARAM_NOBL9_ORGANIZATION"'' \
