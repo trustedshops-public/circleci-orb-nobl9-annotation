@@ -1,14 +1,9 @@
-#!/bin/bash
-
 PARAM_NOBL9_CLIENT_ID=$(eval echo "\$$PARAM_NOBL9_CLIENT_ID")
 PARAM_NOBL9_CLIENT_SECRET=$(eval echo "\$$PARAM_NOBL9_CLIENT_SECRET")
 PARAM_NOBL9_ORGANIZATION=$(eval echo "\$$PARAM_NOBL9_ORGANIZATION")
 
-BASIC_TOKEN="$( echo "$PARAM_NOBL9_CLIENT_ID":"$PARAM_NOBL9_CLIENT_SECRET" | base64 -w0)"
-
-NOBL9_ACCESS_TOKEN="$(curl --location --request POST 'https://app.nobl9.com/api/accessToken' \
---header 'Organization: '"$PARAM_NOBL9_ORGANIZATION"'' \
---header 'Authorization: Basic '"$BASIC_TOKEN"'' | jq -r '.access_token')"
+NOBL9_ACCESS_TOKEN="$(curl --location --request POST 'https://app.nobl9.com/api/accessToken' --user "$PARAM_NOBL9_CLIENT_ID":"$PARAM_NOBL9_CLIENT_SECRET" \
+--header 'Organization: '"$PARAM_NOBL9_ORGANIZATION"'' | jq -r '.access_token')"
 
 DEPLOYMENT_DATE="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
 
