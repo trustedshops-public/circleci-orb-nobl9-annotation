@@ -12,7 +12,7 @@ curl --location --request POST 'https://app.nobl9.com/api/annotations' \
 --header 'Authorization: Bearer '"$NOBL9_ACCESS_TOKEN"'' \
 --header 'organization: '"$PARAM_NOBL9_ORGANIZATION"'' \
 --header 'Content-Type: application/json' \
---data-raw <<TEXT
+--data @<(cat <<TEXT
 {
     "name": "$PARAM_NOBL9_ANNOTATION_NAME",
     "project": "$PARAM_NOBL9_ANNOTATION_PROJECT",

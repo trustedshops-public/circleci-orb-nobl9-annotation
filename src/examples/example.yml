@@ -16,7 +16,7 @@ usage:
             annotation-slo: my-slo
 
   workflows:
-    aws-cli:
+    nobl9-annotation:
       jobs:
         - nobl9-annotation-example:
             name: nobl9-annotation
