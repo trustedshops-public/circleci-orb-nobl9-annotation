@@ -13,11 +13,11 @@ curl --location --request POST 'https://app.nobl9.com/api/annotations' \
 --header 'Content-Type: application/json' \
 --data @- <<TEXT
 {
-    "name": "$PARAM_NOBL9_ANNOTATION_NAME",
-    "project": "$PARAM_NOBL9_ANNOTATION_PROJECT",
-    "slo": "$PARAM_NOBL9_ANNOTATION_SLO",
-    "description": "$PARAM_NOBL9_ANNOTATION_DESCRIPTION",
-    "startTime": "$DEPLOYMENT_DATE",
-    "endTime": "$DEPLOYMENT_DATE"
+    "name": "$(eval echo "$PARAM_NOBL9_ANNOTATION_NAME")",
+    "project": "$(eval echo "$PARAM_NOBL9_ANNOTATION_PROJECT")",
+    "slo": "$(eval echo "$PARAM_NOBL9_ANNOTATION_SLO")",
+    "description": "$(eval echo "$PARAM_NOBL9_ANNOTATION_DESCRIPTION")",
+    "startTime": "$(eval echo "$DEPLOYMENT_DATE")",
+    "endTime": "$(eval echo "$DEPLOYMENT_DATE")"
 }
 TEXT

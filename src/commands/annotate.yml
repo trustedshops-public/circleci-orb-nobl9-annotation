@@ -18,7 +18,7 @@ parameters:
       Name of the annotation in Nobl9. Default value is "circleci-deployment-<build_number>".
       Value must be quoted in double quotes.
     type: string
-    default: "circleci-deployment-$CIRCLE_BUILD_NUM"
+    default: "circleci-deployment-$CIRCLE_WORKFLOW_ID-$CIRCLE_BUILD_NUM"
   annotation-project:
     description: Name of the project containing the SLO for which the annotation should be created.
     type: string
@@ -31,7 +31,7 @@ parameters:
       Default value is "CirclecCI Deployment $CIRCLE_BUILD_NUM\n Git-SHA1: $CIRCLE_SHA1\n $CIRCLE_BUILD_URL".
       Value must be quoted in double quotes.
     type: string
-    default: "CirclecCI Deployment $CIRCLE_BUILD_NUM\n Git-SHA1: $CIRCLE_SHA1\n $CIRCLE_BUILD_URL"
+    default: "CirclecCI Deployment $CIRCLE_BUILD_NUM\\nGit-SHA1: $CIRCLE_SHA1\\n$CIRCLE_BUILD_URL"
 
 steps:
   - run:
