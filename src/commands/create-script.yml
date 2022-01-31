@@ -12,4 +12,4 @@ steps:
       name: Add Nobl9 annotation
       environment:
         PARAM_NOBL9_SCRIPT_PATH: <<parameters.destination>>
-      command: <<include(scripts/annotate.sh)>>
+      command: <<include(scripts/create-script.sh)>>
