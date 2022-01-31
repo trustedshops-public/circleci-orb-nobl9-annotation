@@ -16,9 +16,8 @@ parameters:
   annotation-name:
     description: |
       Name of the annotation in Nobl9. Default value is "circleci-deployment-<build_number>".
-      Value must be quoted in double quotes.
     type: string
-    default: "circleci-deployment-$CIRCLE_WORKFLOW_ID-$CIRCLE_BUILD_NUM"
+    default: ""
   annotation-project:
     description: Name of the project containing the SLO for which the annotation should be created.
     type: string
@@ -31,17 +30,21 @@ parameters:
       Default value is "CirclecCI Deployment $CIRCLE_BUILD_NUM | Git-SHA1: $CIRCLE_SHA1 | $CIRCLE_BUILD_URL".
       Value must be quoted in double quotes.
     type: string
-    default: "CirclecCI Deployment $CIRCLE_BUILD_NUM | Git-SHA1: $CIRCLE_SHA1 | $CIRCLE_BUILD_URL"
+    default: ""
+  script:
+    type: string
+    description: Script name to use for execution
+    default: annotate-nobl9-slo
 
 steps:
   - run:
       name: Add Nobl9 annotation
-      environment:
-        PARAM_NOBL9_CLIENT_ID: <<parameters.client-id-var>>
-        PARAM_NOBL9_CLIENT_SECRET: <<parameters.client-secret-var>>
-        PARAM_NOBL9_ORGANIZATION: <<parameters.organization-var>>
-        PARAM_NOBL9_ANNOTATION_NAME: <<parameters.annotation-name>>
-        PARAM_NOBL9_ANNOTATION_PROJECT: <<parameters.annotation-project>>
-        PARAM_NOBL9_ANNOTATION_SLO: <<parameters.annotation-slo>>
-        PARAM_NOBL9_ANNOTATION_DESCRIPTION: <<parameters.annotation-description>>
-      command: <<include(scripts/annotate.sh)>>
+      command: |
+        <<parameters.script>> \
+          --client-id-var <<parameters.client-id-var>> \
+          --client-secret-var <<parameters.client-secret-var>> \
+          --organization-var <<parameters.organization-var>> \
+          --annotation-name <<parameters.annotation-name>> \
+          --annotation-project <<parameters.annotation-project>> \
+          --annotation-slo <<parameters.annotation-slo>> \
+          --annotation-description <<parameters.annotation-description>>
