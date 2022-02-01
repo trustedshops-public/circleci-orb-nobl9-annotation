@@ -132,8 +132,8 @@ if __name__ == "__main__":
 
     payload = {
         "name": annotation_name,
-        "project": os.environ[args.annotation_project],
-        "slo": os.environ[args.annotation_slo],
+        "project": args.annotation_project,
+        "slo": args.annotation_slo,
         "description": annotation_description,
         "startTime": deployment_date,
         "endTime": deployment_date
