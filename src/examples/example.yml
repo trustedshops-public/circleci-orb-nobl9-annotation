@@ -11,6 +11,7 @@ usage:
         - image: 'cimg/base:2022.01'
       steps:
         - checkout
+        - nobl9-annotation/create-script
         - nobl9-annotation/annotate:
             annotation-project: my-project
             annotation-slo: my-slo
