@@ -33,13 +33,13 @@ def parse_cli():
                         help="Name of the environment variable containing the Nobl9 Client Secret for the API auth")
     parser.add_argument("--organization-var",  required=True,
                         help="Name of the environment variable containing the value for the organization header of the Nobl9 API.")
-    parser.add_argument("--annotation-name",  required=True,
+    parser.add_argument("--annotation-name",  required=False,
                         help="Name of the annotation in Nobl9. Default value is 'circleci-deployment-<workflow-id>-<build_number>'")
     parser.add_argument("--annotation-project",  required=True,
                         help="Name of the project containing the SLO for which the annotation should be created.")
     parser.add_argument("--annotation-slo",  required=True,
                         help="Name of the SLO for which the annotation should be created.")
-    parser.add_argument("--annotation-description",  required=True,
+    parser.add_argument("--annotation-description",  required=False,
                         help="Description of the annotation in Nobl9. Default value is 'CirclecCI Deployment $CIRCLE_BUILD_NUM | Git-SHA1: $CIRCLE_SHA1 | $CIRCLE_BUILD_URL'")
     return parser.parse_args()
 
@@ -119,12 +119,12 @@ if __name__ == "__main__":
 
     # Annotation name
     annotation_name = f"circleci-deployment-{os.environ['CIRCLE_WORKFLOW_ID']}-{os.environ['CIRCLE_BUILD_NUM']}"
-    if args.annotation_name != "":
+    if args.annotation_name is not None:
         annotation_name = args.annotation_name
 
     # Annotation description
     annotation_description = f"CirclecCI Deployment {os.environ['CIRCLE_BUILD_NUM']}\nGit-SHA1: {os.environ['CIRCLE_SHA1']}\n {os.environ['CIRCLE_BUILD_URL']}"
-    if args.annotation_description != "":
+    if args.annotation_description is not None:
         annotation_description = args.annotation_description
 
     # Deployment date
