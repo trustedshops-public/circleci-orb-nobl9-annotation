@@ -143,7 +143,7 @@ if __name__ == "__main__":
 
 TEXT
 
-sudo mv /tmp/trigger-pipeline.tmp "${PARAM_NOBL9_SCRIPT_PATH}"
+sudo mv /tmp/create-nobl9-annotation.py "${PARAM_NOBL9_SCRIPT_PATH}"
 
 echo "Making file ${PARAM_NOBL9_SCRIPT_PATH} executable ..."
 sudo chmod +x "${PARAM_NOBL9_SCRIPT_PATH}"
