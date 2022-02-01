@@ -123,7 +123,7 @@ if __name__ == "__main__":
         annotation_name = args.annotation_name
 
     # Annotation description
-    annotation_description = f"CirclecCI Deployment {os.environ['CIRCLE_BUILD_NUM']}\nGit-SHA1: {os.environ['CIRCLE_SHA1']}\n {os.environ['CIRCLE_BUILD_URL']}"
+    annotation_description = f"CirclecCI Deployment {os.environ['CIRCLE_BUILD_NUM']}\nGit-SHA1: {os.environ['CIRCLE_SHA1']}\n{os.environ['CIRCLE_BUILD_URL']}"
     if args.annotation_description is not None:
         annotation_description = args.annotation_description
 
