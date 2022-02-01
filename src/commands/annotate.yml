@@ -44,7 +44,7 @@ steps:
           --client-id-var <<parameters.client-id-var>> \
           --client-secret-var <<parameters.client-secret-var>> \
           --organization-var <<parameters.organization-var>> \
-          --annotation-name <<parameters.annotation-name>> \
+          `if [ ! -z "<<parameters.annotation-name>>" ]; then echo "--annotation-name <<parameters.annotation-name>>"; fi` \
           --annotation-project <<parameters.annotation-project>> \
           --annotation-slo <<parameters.annotation-slo>> \
-          --annotation-description <<parameters.annotation-description>>
+          `if [ ! -z "<<parameters.annotation-description>>" ]; then echo "--annotation-description <<parameters.annotation-description>>"; fi`
