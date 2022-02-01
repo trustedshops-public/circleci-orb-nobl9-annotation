@@ -8,7 +8,7 @@ usage:
   jobs:
     nobl9-annotation-example:
       docker:
-        - image: 'cimg/base:2022.01'
+        - image: 'cimg/base:stable'
       steps:
         - checkout
         - nobl9-annotation/create-script
