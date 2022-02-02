@@ -1,0 +1,15 @@
+description: >
+  Create python script to add Nobl9 SLO annotation
+
+parameters:
+  destination:
+    default: /usr/local/bin/annotate-nobl9-slo
+    description: Path to use for the script
+    type: string
+
+steps:
+  - run:
+      name: Add Nobl9 annotation
+      environment:
+        PARAM_NOBL9_SCRIPT_PATH: <<parameters.destination>>
+      command: <<include(scripts/create-script.sh)>>

@@ -1,0 +1,9 @@
+version: 2.1
+
+description: |
+  CircleCI Orb to create Nobl9 SLO annotations.
+
+  Requires 'curl' and 'jq' to be installed.
+display:
+  home_url: "https://github.com/trustedshops-public/circleci-orb-nobl9-annotation"
+  source_url: "https://github.com/trustedshops-public/circleci-orb-nobl9-annotation"
