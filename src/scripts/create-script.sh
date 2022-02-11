@@ -130,16 +130,17 @@ if __name__ == "__main__":
     # Deployment date
     deployment_date = datetime.datetime.now(datetime.timezone.utc).isoformat()
 
-    payload = {
-        "name": annotation_name,
-        "project": args.annotation_project,
-        "slo": args.annotation_slo,
-        "description": annotation_description,
-        "startTime": deployment_date,
-        "endTime": deployment_date
-    }
+    for slo in args.annotation_slo.split(","):
+        payload = {
+            "name": annotation_name,
+            "project": args.annotation_project,
+            "slo": slo,
+            "description": annotation_description,
+            "startTime": deployment_date,
+            "endTime": deployment_date
+        }
 
-    create_annotation(access_token, payload)
+        create_annotation(access_token, payload)
 
 TEXT
 

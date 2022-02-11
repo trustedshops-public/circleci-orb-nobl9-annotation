@@ -22,7 +22,7 @@ parameters:
     description: Name of the project containing the SLO for which the annotation should be created.
     type: string
   annotation-slo:
-    description: Name of the SLO for which the annotation should be created.
+    description: Name of the SLO for which the annotation should be created. You can input multiple slo names separated by comma.
     type: string
   annotation-description:
     description: |
