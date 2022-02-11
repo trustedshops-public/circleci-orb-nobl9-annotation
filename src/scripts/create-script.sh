@@ -121,8 +121,10 @@ if __name__ == "__main__":
     deployment_date = datetime.datetime.now(datetime.timezone.utc).isoformat()
 
     for slo in args.annotation_slo.split(","):
+        print_info_pair("SLO", slo)
         # Annotation name
         annotation_name = f"circleci-deployment-{os.environ['CIRCLE_WORKFLOW_ID']}-{os.environ['CIRCLE_BUILD_NUM']}-{slo}"
+        print_info_pair("Annotation name", annotation_name)
         if args.annotation_name is not None:
             annotation_name = args.annotation_name
 
