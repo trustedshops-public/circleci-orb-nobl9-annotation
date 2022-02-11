@@ -10,6 +10,7 @@ import json
 import base64
 from argparse import ArgumentParser
 import datetime
+import uuid
 
 # Ansi constants
 ANSI_RED = '\u001b[31;1m'
@@ -123,7 +124,7 @@ if __name__ == "__main__":
     for slo in args.annotation_slo.split(","):
         print_info_pair("SLO", slo)
         # Annotation name
-        annotation_name = f"circleci-deployment-{os.environ['CIRCLE_WORKFLOW_ID']}-{os.environ['CIRCLE_BUILD_NUM']}-{slo}"
+        annotation_name = f"circleci-deployment-{str(uuid.uuid4())}"
         print_info_pair("Annotation name", annotation_name)
         if args.annotation_name is not None:
             annotation_name = args.annotation_name
