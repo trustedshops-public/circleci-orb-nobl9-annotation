@@ -15,7 +15,7 @@ parameters:
     default: NOBL9_ORGANIZATION
   annotation-name:
     description: |
-      Name of the annotation in Nobl9. Default value is "circleci-deployment-<build_number>".
+      Name of the annotation in Nobl9. Default value is "circleci-deployment-<uuid>".
     type: string
     default: ""
   annotation-project:
