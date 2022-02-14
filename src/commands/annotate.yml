@@ -15,14 +15,14 @@ parameters:
     default: NOBL9_ORGANIZATION
   annotation-name:
     description: |
-      Name of the annotation in Nobl9. Default value is "circleci-deployment-<build_number>".
+      Name of the annotation in Nobl9. Default value is "circleci-deployment-<uuid>".
     type: string
     default: ""
   annotation-project:
     description: Name of the project containing the SLO for which the annotation should be created.
     type: string
   annotation-slo:
-    description: Name of the SLO for which the annotation should be created.
+    description: Name of the SLO for which the annotation should be created. You can input multiple slo names separated by comma.
     type: string
   annotation-description:
     description: |

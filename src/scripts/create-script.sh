@@ -10,6 +10,7 @@ import json
 import base64
 from argparse import ArgumentParser
 import datetime
+import uuid
 
 # Ansi constants
 ANSI_RED = '\u001b[31;1m'
@@ -117,29 +118,33 @@ if __name__ == "__main__":
 
     access_token = get_access_token(client_id, client_secret, organization)
 
-    # Annotation name
-    annotation_name = f"circleci-deployment-{os.environ['CIRCLE_WORKFLOW_ID']}-{os.environ['CIRCLE_BUILD_NUM']}"
-    if args.annotation_name is not None:
-        annotation_name = args.annotation_name
-
-    # Annotation description
-    annotation_description = f"CirclecCI Deployment {os.environ['CIRCLE_BUILD_NUM']}\nGit-SHA1: {os.environ['CIRCLE_SHA1']}\n{os.environ['CIRCLE_BUILD_URL']}"
-    if args.annotation_description is not None:
-        annotation_description = args.annotation_description
-
     # Deployment date
     deployment_date = datetime.datetime.now(datetime.timezone.utc).isoformat()
 
-    payload = {
-        "name": annotation_name,
-        "project": args.annotation_project,
-        "slo": args.annotation_slo,
-        "description": annotation_description,
-        "startTime": deployment_date,
-        "endTime": deployment_date
-    }
+    for slo in args.annotation_slo.split(","):
+        print_info_pair("SLO", slo)
+        # Annotation name
+        annotation_name = f"circleci-deployment-{str(uuid.uuid4())}"
+        print_info_pair("Annotation name", annotation_name)
+        if args.annotation_name is not None:
+            annotation_name = args.annotation_name
 
-    create_annotation(access_token, payload)
+        # Annotation description
+        annotation_description = f"CirclecCI Deployment {os.environ['CIRCLE_BUILD_NUM']}\nGit-SHA1: {os.environ['CIRCLE_SHA1']}\n{os.environ['CIRCLE_BUILD_URL']}"
+        if args.annotation_description is not None:
+            annotation_description = args.annotation_description
+
+
+        payload = {
+            "name": annotation_name,
+            "project": args.annotation_project,
+            "slo": slo,
+            "description": annotation_description,
+            "startTime": deployment_date,
+            "endTime": deployment_date
+        }
+
+        create_annotation(access_token, payload)
 
 TEXT
 
