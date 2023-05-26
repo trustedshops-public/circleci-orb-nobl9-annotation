@@ -1,30 +1,30 @@
 description: >
   Create Nobl9 SLO annotation
 parameters:
-  client-id-var:
+  client_id_var:
     description: Name of the environment variable containing the Nobl9 Client ID for the API auth.
     type: env_var_name
     default: NOBL9_CLIENT_ID
-  client-secret-var:
+  client_secret_var:
     description: Name of the environment variable containing the Nobl9 Client Secret for the API auth.
     type: env_var_name
     default: NOBL9_CLIENT_SECRET
-  organization-var:
+  organization_var:
     description: Name of the environment variable containing the value for the organization header of the Nobl9 API.
     type: env_var_name
     default: NOBL9_ORGANIZATION
-  annotation-name:
+  annotation_name:
     description: |
       Name of the annotation in Nobl9. Default value is "circleci-deployment-<uuid>".
     type: string
     default: ""
-  annotation-project:
+  annotation_project:
     description: Name of the project containing the SLO for which the annotation should be created.
     type: string
-  annotation-slo:
+  annotation_slo:
     description: Name of the SLO for which the annotation should be created. You can input multiple slo names separated by comma.
     type: string
-  annotation-description:
+  annotation_description:
     description: |
       Description of the annotation in Nobl9.
       Default value is "CirclecCI Deployment $CIRCLE_BUILD_NUM | Git-SHA1: $CIRCLE_SHA1 | $CIRCLE_BUILD_URL".
@@ -41,10 +41,10 @@ steps:
       name: Add Nobl9 annotation
       command: |
         <<parameters.script>> \
-          --client-id-var <<parameters.client-id-var>> \
-          --client-secret-var <<parameters.client-secret-var>> \
-          --organization-var <<parameters.organization-var>> \
-          `if [ ! -z "<<parameters.annotation-name>>" ]; then echo "--annotation-name <<parameters.annotation-name>>"; fi` \
-          --annotation-project <<parameters.annotation-project>> \
-          --annotation-slo <<parameters.annotation-slo>> \
-          `if [ ! -z "<<parameters.annotation-description>>" ]; then echo "--annotation-description <<parameters.annotation-description>>"; fi`
+          --client-id-var <<parameters.client_id_var>> \
+          --client-secret-var <<parameters.client_secret_var>> \
+          --organization-var <<parameters.organization_var>> \
+          `if [ ! -z "<<parameters.annotation_name>>" ]; then echo "--annotation-name <<parameters.annotation_name>>"; fi` \
+          --annotation-project <<parameters.annotation_project>> \
+          --annotation-slo <<parameters.annotation_slo>> \
+          `if [ ! -z "<<parameters.annotation_description>>" ]; then echo "--annotation-description <<parameters.annotation_description>>"; fi`
