@@ -11,10 +11,10 @@ usage:
         - image: 'cimg/base:stable'
       steps:
         - checkout
-        - nobl9-annotation/create-script
+        - nobl9-annotation/create_script
         - nobl9-annotation/annotate:
-            annotation-project: my-project
-            annotation-slo: my-slo
+            annotation_project: my-project
+            annotation_slo: my-slo
 
   workflows:
     nobl9-annotation:
